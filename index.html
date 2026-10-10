@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kraken — Extend your reach across every market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --rail: 56px;             /* distance of the vertical guide lines from the edges */
+      --pad-l: 110px;           /* content inset, left */
+      --pad-r: 78px;            /* content inset, right */
+      --line: rgba(255, 255, 255, 0.16);
+      --orange: #f0522b;
+      --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: #0a090d;
+    }
+
+    body {
+      font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- Hero shell ---------- */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100svh;
+      min-height: 620px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(105% 95% at 16% 100%, rgba(232, 124, 52, 0.95) 0%, rgba(196, 92, 42, 0.62) 30%, rgba(130, 54, 32, 0.22) 58%, rgba(120, 50, 30, 0) 78%),
+        radial-gradient(60% 55% at 100% 100%, rgba(176, 88, 46, 0.85) 0%, rgba(120, 52, 34, 0) 70%),
+        linear-gradient(180deg, #0d0a0c 0%, #150d0e 16%, #2c1514 38%, #4a221c 62%, #6e3223 100%);
+    }
+
+    /* vertical guide lines */
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero::before { left: var(--rail); }
+    .hero::after { right: var(--rail); }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      flex: none;
+      display: flex;
+      align-items: center;
+      height: 83px;
+      padding: 0 var(--pad-r) 12px var(--pad-l);
+    }
+
+    .brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .brand svg {
+      width: 27px;
+      height: 21px;
+      margin-top: 2px;
+    }
+    .brand sup {
+      font-size: 5px;
+      font-weight: 600;
+      letter-spacing: 0;
+      margin: -1px 16px 0 2px;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 23px;
+      margin-left: 68px;
+      list-style: none;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: rgba(255, 255, 255, 0.62);
+    }
+    .nav__links a {
+      transition: color 0.2s;
+    }
+    .nav__links a:hover {
+      color: #fff;
+    }
+
+    .nav__actions {
+      display: flex;
+      gap: 11px;
+      margin-left: auto;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      height: 29px;
+      padding: 0 7px;
+      font: inherit;
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 0;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .btn--solid {
+      background: #fff;
+      color: #0b0b0b;
+      padding-right: 10px;
+    }
+    .btn--solid:hover {
+      background: #ffe3d2;
+    }
+    .btn--solid svg {
+      width: 7px;
+      height: 7px;
+      transition: transform 0.25s var(--ease);
+    }
+    .btn--solid:hover svg {
+      transform: translateX(2px);
+    }
+    /* outlined button with bright corner brackets */
+    .btn--ghost {
+      --c: rgba(255, 255, 255, 0.75);
+      color: #fff;
+      padding: 0 6px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(var(--c), var(--c)) top left / 5px 1px no-repeat,
+        linear-gradient(var(--c), var(--c)) top left / 1px 5px no-repeat,
+        linear-gradient(var(--c), var(--c)) top right / 5px 1px no-repeat,
+        linear-gradient(var(--c), var(--c)) top right / 1px 5px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom left / 5px 1px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom left / 1px 5px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom right / 5px 1px no-repeat,
+        linear-gradient(var(--c), var(--c)) bottom right / 1px 5px no-repeat,
+        rgba(255, 255, 255, 0.06);
+      background-origin: border-box;
+    }
+    .btn--ghost:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+    }
+
+    /* ---------- Hatched divider bands ---------- */
+    .band {
+      flex: none;
+      position: relative;
+      height: 38px;
+      margin: 0 var(--rail);
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0 1px,
+        transparent 1px 7px
+      );
+    }
+    /* top + bottom rules, overshooting the rails to form the "+" marks */
+    .band::before,
+    .band::after {
+      content: "";
+      position: absolute;
+      left: -7px;
+      right: -7px;
+      height: 1px;
+      background: var(--line);
+    }
+    .band::before { top: 0; }
+    .band::after { bottom: 0; }
+
+    /* ---------- Intro copy ---------- */
+    .intro {
+      flex: none;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 51px var(--pad-r) 72px var(--pad-l);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 31px;
+      padding: 0 9px 0 10px;
+      font-size: 13.6px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      background: linear-gradient(180deg, #ffb13d, #f0642b);
+    }
+
+    .intro h1 {
+      margin-top: 7px;
+      font-size: 55px;
+      font-weight: 500;
+      line-height: 1.064;
+      letter-spacing: -0.028em;
+    }
+    .intro h1 span {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .intro__aside {
+      flex: none;
+      width: 393px;
+      padding-bottom: 2px;
+    }
+    .intro__aside p {
+      font-size: 16px;
+      line-height: 22.5px;
+      letter-spacing: 0;
+      color: rgba(255, 255, 255, 0.94);
+    }
+    .intro__cta {
+      display: flex;
+      gap: 11px;
+      margin-top: 16px;
+    }
+
+    /* ---------- Stage: looping background + dashboard ---------- */
+    .stage {
+      flex: 1 1 auto;
+      position: relative;
+      min-height: 200px;
+      margin: 0 var(--rail);
+      overflow: hidden;
+      background: #000;
+    }
+    .stage__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .window {
+      position: absolute;
+      top: 57px;
+      bottom: 0;
+      left: 50%;
+      width: min(937px, 70.6%);
+      transform: translateX(-50%);
+      container-type: inline-size;
+    }
+    /* 1em == 10px when the window is at its full 937px width */
+    .window__frame {
+      font-size: calc(100cqw / 93.7);
+      /* always reaches the bottom edge of the stage, however tall the viewport */
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 2.6em 1.65em 0;
+      border-radius: 1.2em 1.2em 0 0;
+      background: linear-gradient(180deg, rgba(150, 82, 46, 0.78) 0%, rgba(96, 48, 28, 0.7) 10%, rgba(30, 16, 12, 0.72) 55%, rgba(12, 8, 8, 0.8) 100%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07) inset, 0 3em 8em rgba(0, 0, 0, 0.55);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      position: relative;
+    }
+    .window__dots {
+      position: absolute;
+      top: 1.05em;
+      left: 1.7em;
+      display: flex;
+      gap: 0.25em;
+    }
+    .window__dots i {
+      width: 0.62em;
+      height: 0.62em;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .window__dots i:nth-child(2) { opacity: 0.6; }
+    .window__dots i:nth-child(3) { opacity: 0.3; }
+
+    /* ---------- Dashboard (all sizes in em) ---------- */
+    .app {
+      flex: 1 0 auto;
+      color: #0c0c0c;
+      background: #fafafa;
+      overflow: hidden;
+    }
+    .app__bar {
+      display: flex;
+      align-items: center;
+      height: 3.3em;
+      background: #000;
+      color: #fff;
+    }
+    .app__logo {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 3.5em;
+      height: 100%;
+      background: linear-gradient(180deg, #ffa22a 0%, #f0522b 100%);
+    }
+    .app__logo svg {
+      width: 1.5em;
+      height: 1.2em;
+    }
+    .app__tabs {
+      display: flex;
+      gap: 1.15em;
+      margin-left: 1.8em;
+      list-style: none;
+    }
+    .app__tabs li {
+      font-size: 0.86em;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+    .app__tabs li:first-child {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+    .app__search {
+      width: 16.8em;
+      margin-left: 8em;
+      padding-bottom: 0.45em;
+      align-self: flex-end;
+      margin-bottom: 0.6em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .app__search span {
+      font-size: 0.82em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .app__right {
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+      margin-left: auto;
+      padding-right: 1.5em;
+    }
+    .app__icon {
+      display: grid;
+      place-items: center;
+      width: 1.7em;
+      height: 1.7em;
+      background: #26262a;
+    }
+    .app__icon svg {
+      width: 0.9em;
+      height: 0.9em;
+    }
+    .app__demo {
+      margin: 0 1.9em 0 2em;
+      line-height: 1;
+    }
+    .app__demo div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+    .app__demo b {
+      font-size: 0.62em;
+      font-weight: 500;
+      padding: 0.25em 0.7em;
+      background: #fff;
+      color: #000;
+    }
+    .app__demo small {
+      font-size: 0.6em;
+      color: rgba(255, 255, 255, 0.35);
+    }
+    .app__demo p {
+      margin-top: 0.35em;
+      font-size: 0.72em;
+      white-space: nowrap;
+    }
+    .app__demo p span {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .app__wallet {
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+      height: 1.7em;
+      padding: 0 0.6em;
+      background: #26262a;
+      white-space: nowrap;
+    }
+    .app__wallet span {
+      font-size: 0.72em;
+      letter-spacing: 0.01em;
+    }
+    .app__wallet svg {
+      width: 0.45em;
+      height: 0.7em;
+    }
+
+    .app__body {
+      padding: 0 1.6em;
+    }
+    .app__head {
+      display: flex;
+      align-items: center;
+      height: 3.75em;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .app__title {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .app__title svg {
+      width: 1.15em;
+      height: 1.15em;
+    }
+    .app__title span {
+      font-size: 1.28em;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .chips {
+      display: flex;
+      gap: 0.3em;
+      margin-left: auto;
+    }
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 0.45em;
+      height: 1.75em;
+      padding: 0 0.55em;
+      background: #efefef;
+      white-space: nowrap;
+    }
+    .chip svg {
+      width: 0.8em;
+      height: 0.8em;
+    }
+    .chip span {
+      font-size: 0.82em;
+      font-weight: 500;
+    }
+
+    .app__row {
+      display: grid;
+      grid-template-columns: 48.2em 1fr;
+    }
+    .app__row--top {
+      height: 14.25em;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .label {
+      display: block;
+      font-size: 0.86em;
+      color: #8d8d92;
+      white-space: nowrap;
+    }
+
+    .value {
+      padding-top: 2.15em;
+    }
+    .value__num {
+      display: flex;
+      align-items: baseline;
+      margin: 1.25em 0 0 -1.4em;
+      white-space: nowrap;
+    }
+    .value__num strong {
+      font-size: 7.76em;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .value__num em {
+      font-size: 1.15em;
+      font-style: normal;
+      color: #8d8d92;
+      margin-left: -0.1em;
+    }
+
+    .stats {
+      padding-top: 2.15em;
+    }
+    .stats__years {
+      display: flex;
+      gap: 1.05em;
+      margin-top: 1.3em;
+      font-size: 1em;
+      color: #8d8d92;
+    }
+    .stats__years b {
+      font-weight: 500;
+      color: #0c0c0c;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+    .stats__grid {
+      display: grid;
+      grid-template-columns: 12.6em 13.3em 1fr;
+      margin-top: 2em;
+    }
+    .stat + .stat {
+      padding-left: 1.6em;
+      border-left: 1px solid #e6e6e6;
+    }
+    .stat__val {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      margin-top: 0.75em;
+      white-space: nowrap;
+    }
+    .stat__val strong {
+      font-size: 1.68em;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .stat__val i {
+      font-size: 0.6em;
+      font-style: normal;
+      line-height: 1;
+      padding: 0.35em 0.45em;
+      color: #fff;
+      background: var(--orange);
+    }
+
+    .chart {
+      padding-top: 2.6em;
+      padding-right: 2.3em;
+    }
+    .chart__top {
+      display: flex;
+      align-items: flex-end;
+    }
+    .chart__amount {
+      display: block;
+      margin-top: 0.55em;
+      font-size: 1.22em;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .ranges {
+      display: flex;
+      gap: 0.3em;
+      margin-left: auto;
+      list-style: none;
+    }
+    .ranges li {
+      display: grid;
+      place-items: center;
+      width: 2.35em;
+      height: 1.45em;
+      background: #efefef;
+    }
+    .ranges li span {
+      font-size: 0.75em;
+      font-weight: 600;
+    }
+    .ranges li:first-child {
+      background: #0c0c0c;
+      color: #fff;
+    }
+    .chart__plot {
+      display: flex;
+      gap: 1.6em;
+      margin-top: 1em;
+      height: 9em;
+    }
+    .chart__plot svg {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+    }
+    .chart__axis {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      list-style: none;
+      font-size: 0.6em;
+      color: #9a9a9f;
+    }
+
+    .alloc {
+      padding-top: 3em;
+    }
+    .alloc__tabs {
+      display: flex;
+      gap: 0.85em;
+      font-size: 1em;
+      color: #8d8d92;
+    }
+    .alloc__tabs b {
+      font-weight: 500;
+      color: #0c0c0c;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+    .alloc__bars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85em;
+      height: 10.5em;
+      margin-top: 0.9em;
+    }
+    .bar {
+      display: flex;
+      flex-direction: column;
+    }
+    .bar--eth { padding-top: 4.3em; }
+    .bar--usdt { padding-top: 8.3em; }
+    .bar__head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45em;
+      padding-bottom: 0.4em;
+      border-bottom: 0.22em solid #0c0c0c;
+      white-space: nowrap;
+    }
+    .bar--btc .bar__head {
+      border-color: var(--orange);
+    }
+    .bar__head b {
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .bar__head small {
+      font-size: 0.58em;
+      color: #9a9a9f;
+    }
+    .bar__head span {
+      margin-left: auto;
+      font-size: 0.6em;
+      font-weight: 600;
+    }
+    .bar__fill {
+      flex: 1;
+      background: repeating-linear-gradient(45deg, #ececec 0 1px, #f2f2f2 1px 3px);
+    }
+
+    /* ---------- Load-in motion ---------- */
+    .rise {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: rise 0.9s var(--ease) forwards;
+      animation-delay: var(--d, 0s);
+    }
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .window {
+      opacity: 0;
+      animation: window-in 1.2s var(--ease) 0.45s forwards;
+    }
+    @keyframes window-in {
+      from {
+        opacity: 0;
+        translate: 0 90px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+    .stage__video {
+      opacity: 0;
+      animation: fade 1.6s ease 0.3s forwards;
+    }
+    @keyframes fade {
+      to { opacity: 1; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1240px) {
+      :root {
+        --rail: 32px;
+        --pad-l: 64px;
+        --pad-r: 54px;
+      }
+      .nav__links { margin-left: 44px; }
+      .intro h1 { font-size: clamp(38px, 4.3vw, 55px); }
+      .intro__aside { width: 360px; }
+      .window { width: min(937px, 80%); }
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --rail: 20px;
+        --pad-l: 40px;
+        --pad-r: 40px;
+      }
+      .hero { min-height: 720px; }
+      .nav { height: 72px; padding-bottom: 6px; }
+      .nav__links { display: none; }
+      .band { height: 26px; }
+      .intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+        padding-top: 36px;
+        padding-bottom: 40px;
+      }
+      .intro h1 { font-size: clamp(34px, 7.4vw, 56px); }
+      .intro__aside { width: auto; }
+      .intro__aside p { max-width: 460px; }
+      .window {
+        top: 36px;
+        width: 88%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --rail: 12px;
+        --pad-l: 24px;
+        --pad-r: 24px;
+      }
+      .hero { min-height: 660px; }
+      .nav { height: 64px; padding-bottom: 0; }
+      .brand { font-size: 19px; }
+      .nav__actions .btn--ghost { display: none; }
+      .band { height: 20px; }
+      .intro {
+        gap: 18px;
+        padding-top: 28px;
+        padding-bottom: 30px;
+      }
+      .badge {
+        height: 27px;
+        font-size: 11.5px;
+      }
+      .intro h1 {
+        margin-top: 10px;
+        font-size: clamp(31px, 9.6vw, 44px);
+        line-height: 1;
+      }
+      .intro__aside p {
+        font-size: 15px;
+        line-height: 21px;
+      }
+      /* dashboard overflows to the right so its figures stay legible */
+      .window {
+        top: 28px;
+        left: 16px;
+        width: 620px;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rise,
+      .window,
+      .stage__video {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      .window { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) and (max-width: 560px) {
+      .window { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <header class="nav">
+      <a class="brand" href="#" aria-label="Kraken home">
+        <svg viewBox="0 0 27 21" fill="#fff" aria-hidden="true">
+          <path d="M6.5 0H27l-2.2 5.2H13.4l11.2 5.1L20.5 21H0l2.2-5.2h11.4L2.4 10.7z" />
+        </svg>
+        <sup>TM</sup>
+        Kraken
+      </a>
+      <ul class="nav__links">
+        <li><a href="#">Benefits</a></li>
+        <li><a href="#">Workflows</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Refer</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a class="btn btn--ghost" href="#">Contact us</a>
+        <a class="btn btn--solid" href="#">
+          Schedule a Demo
+          <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h7M4.5 1.5 7 4 4.5 6.5" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="band" aria-hidden="true"></div>
+
+    <div class="intro">
+      <div class="intro__main">
+        <span class="badge rise">Smarter crypto trading</span>
+        <h1 class="rise" style="--d: 0.08s">
+          <span>Extend your reach</span>
+          <span>across every market.</span>
+        </h1>
+      </div>
+      <div class="intro__aside rise" style="--d: 0.2s">
+        <p>Kraken gives you more reach across the market — powerful tools for trading, analytics, automation, risk management, and portfolio control, all working together.</p>
+        <div class="intro__cta">
+          <a class="btn btn--solid" href="#">
+            Schedule a Demo
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h7M4.5 1.5 7 4 4.5 6.5" /></svg>
+          </a>
+          <a class="btn btn--ghost" href="#">Contact us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="band" aria-hidden="true"></div>
+
+    <div class="stage">
+      <!-- Looping halftone background, generated + animated on Higgsfield (Seedance 2.5) -->
+      <video
+        class="stage__video"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261010_054508_c25b7455-ba53-4b6f-aae3-67d57bcb0753.mp4"
+        poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261010_054336_0a2b9630-0b03-42dc-b472-45c8a0e664ac.png"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
+
+      <div class="window" aria-hidden="true">
+        <div class="window__frame">
+          <div class="window__dots"><i></i><i></i><i></i></div>
+
+          <div class="app">
+            <div class="app__bar">
+              <div class="app__logo">
+                <svg viewBox="0 0 27 21" fill="#0c0c0c"><path d="M6.5 0H27l-2.2 5.2H13.4l11.2 5.1L20.5 21H0l2.2-5.2h11.4L2.4 10.7z" /></svg>
+              </div>
+              <ul class="app__tabs">
+                <li>My Portfolio</li>
+                <li>Overview</li>
+                <li>Top Traders</li>
+                <li>My Copy Traders</li>
+                <li>My Favorites</li>
+              </ul>
+              <div class="app__search"><span>Search Pair...</span></div>
+              <div class="app__right">
+                <div class="app__icon">
+                  <svg viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="0.9"><path d="M2.5 7V4.5a2.5 2.5 0 0 1 5 0V7l.8.8H1.7zM4.2 9h1.6" /></svg>
+                </div>
+                <div class="app__icon">
+                  <svg viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="0.9"><circle cx="5" cy="3.4" r="1.7" /><path d="M1.6 9a3.4 3.4 0 0 1 6.8 0" /></svg>
+                </div>
+                <div class="app__demo">
+                  <div><b>Demo</b><small>Total value</small></div>
+                  <p>10,000.00 <span>USDC ˅</span></p>
+                </div>
+                <div class="app__wallet">
+                  <span>CONNECT WALLET</span>
+                  <svg viewBox="0 0 5 8" fill="none" stroke="#fff" stroke-width="1.2"><path d="m1 1 3 3-3 3" /></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="app__body">
+              <div class="app__head">
+                <div class="app__title">
+                  <svg viewBox="0 0 12 12" fill="#0c0c0c"><path d="M3 .5h6A2.5 2.5 0 0 1 11.500 3v6A2.500 2.500 0 0 1 9 11.500H3A2.500 2.500 0 0 1 .5 9V3A2.500 2.500 0 0 1 3 .5Zm.2 7.200 1.900-2.200 1.600 1.300 2.100-2.800" stroke="#fafafa" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span>My Portfolio</span>
+                </div>
+                <div class="chips">
+                  <div class="chip">
+                    <svg viewBox="0 0 8 8" fill="none" stroke="#0c0c0c" stroke-width="0.8"><rect x="0.8" y="1.4" width="6.4" height="5.800" rx="0.8" /><path d="M0.8 3.300h6.400M2.600.5v1.600M5.400.5v1.600" /></svg>
+                    <span>May 1 - May 31 ˅</span>
+                  </div>
+                  <div class="chip">
+                    <svg viewBox="0 0 8 8" fill="none" stroke="#0c0c0c" stroke-width="0.8"><path d="M4 .8v4.400M2.300 3.600 4 5.300l1.700-1.700M1 7.200h6" /></svg>
+                    <span>Export</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="app__row app__row--top">
+                <div class="value">
+                  <span class="label">Portfolio Value</span>
+                  <div class="value__num"><strong id="portfolio">$12,486.075</strong><em>USDT</em></div>
+                </div>
+                <div class="stats">
+                  <span class="label">Statistics</span>
+                  <div class="stats__years"><b>2024</b><span>2025</span><span>2026</span></div>
+                  <div class="stats__grid">
+                    <div class="stat">
+                      <span class="label">Total P&amp;L</span>
+                      <div class="stat__val"><strong>$1,246.75</strong><i>+11.09%</i></div>
+                    </div>
+                    <div class="stat">
+                      <span class="label">ROI</span>
+                      <div class="stat__val"><strong>+18.42%</strong><i>+2.8%</i></div>
+                    </div>
+                    <div class="stat">
+                      <span class="label">Total Invested</span>
+                      <div class="stat__val"><strong>$11,240.00</strong><i>+8.02%</i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="app__row">
+                <div class="chart">
+                  <div class="chart__top">
+                    <div>
+                      <span class="label">Value Chart</span>
+                      <span class="chart__amount">$2,246.24</span>
+                    </div>
+                    <ul class="ranges">
+                      <li><span>All</span></li>
+                      <li><span>1H</span></li>
+                      <li><span>1D</span></li>
+                      <li><span>1W</span></li>
+                      <li><span>1Y</span></li>
+                    </ul>
+                  </div>
+                  <div class="chart__plot">
+                    <svg id="chart" viewBox="0 0 400 90" preserveAspectRatio="none"></svg>
+                    <ul class="chart__axis">
+                      <li>$32.0K</li>
+                      <li>$31.8K</li>
+                      <li>$31.6K</li>
+                      <li>$31.4K</li>
+                      <li>$31.2K</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="alloc">
+                  <div class="alloc__tabs"><b>Alocation</b><span>Charts</span></div>
+                  <div class="alloc__bars">
+                    <div class="bar bar--eth">
+                      <div class="bar__head"><b>ETH</b><small>Ethereum</small><span>$ 3832,26</span></div>
+                      <div class="bar__fill"></div>
+                    </div>
+                    <div class="bar bar--btc">
+                      <div class="bar__head"><b>BTC</b><small>Bitcoin</small><span>$ 6,612,02</span></div>
+                      <div class="bar__fill"></div>
+                    </div>
+                    <div class="bar bar--usdt">
+                      <div class="bar__head"><b>USDT</b><small>Tether</small><span>$ 0,612,02</span></div>
+                      <div class="bar__fill"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Value chart: grey volume bars, a highlighted window and the price line
+      var svg = document.getElementById("chart");
+      var NS = "http://www.w3.org/2000/svg";
+      var seed = 7;
+      function rand() {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      }
+      function el(name, attrs) {
+        var node = document.createElementNS(NS, name);
+        for (var k in attrs) node.setAttribute(k, attrs[k]);
+        svg.appendChild(node);
+        return node;
+      }
+      var W = 400, H = 90, N = 100, pts = [], y = 66;
+      el("rect", { x: 250, y: 58, width: 82, height: 32, fill: "#f6c3b6" });
+      for (var i = 0; i < N; i++) {
+        var x = (i / N) * W;
+        var wave = Math.sin(i / 9) * 9 + Math.sin(i / 3.1) * 5;
+        var h = 34 + wave + rand() * 16;
+        el("rect", { x: x.toFixed(1), y: (H - h).toFixed(1), width: 3, height: h.toFixed(1), fill: "#e4e4e4", opacity: 0.85 });
+        y += (rand() - 0.5) * 7 + (58 - Math.sin(i / 11) * 8 - y) * 0.18;
+        pts.push(x.toFixed(1) + "," + y.toFixed(1));
+      }
+      el("polyline", { points: pts.join(" "), fill: "none", stroke: "#6b6b6b", "stroke-width": 0.9, "vector-effect": "non-scaling-stroke" });
+
+      // Portfolio value counts up as the dashboard slides in
+      var out = document.getElementById("portfolio");
+      var from = 7367.388, to = 12486.075;
+      function fmt(v) {
+        return "$" + v.toLocaleString("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      }
+      if (!reduced) {
+        var start = null, delay = 700, dur = 1900;
+        out.textContent = fmt(from);
+        requestAnimationFrame(function tick(t) {
+          if (start === null) start = t + delay;
+          var p = Math.min(Math.max((t - start) / dur, 0), 1);
+          var eased = 1 - Math.pow(1 - p, 4);
+          out.textContent = fmt(from + (to - from) * eased);
+          if (p < 1) requestAnimationFrame(tick);
+        });
+      }
+
+      // Keep the background loop running (some browsers pause muted autoplay)
+      var video = document.querySelector(".stage__video");
+      var play = function () {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      };
+      play();
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden) play();
+      });
+    })();
+  </script>
+</body>
+</html>
